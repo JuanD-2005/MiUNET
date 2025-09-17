@@ -1,0 +1,25 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f5f5f5;
+}
+
+h1 {
+    text-align: center;
+}
+
+.glosario-item {
+    background-color: white;
+    margin: 10px 0;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.glosario-def {
+    display: none;
+    margin-top: 5px;
+    padding-left: 10px;
+    color: #333;
+}
