@@ -7,9 +7,88 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Glosario Interactivo MiUNET</h1>
-    <div id="glosario"></div>
+    <header class="nav-header">
+        <div class="nav-logo">UNET</div>
+        <nav class="nav-tabs">
+            <button class="nav-btn" data-tab="principal">Principal</button>
+            <button class="nav-btn" data-tab="seguimiento">Seguimiento</button>
+            <button class="nav-btn" data-tab="glosario">Glosario</button>
+            <button class="nav-btn" data-tab="actividades">Actividades</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="principal" class="tab-section">
+            <h2>Bienvenidos al Blog de MiUNET</h2>
+            <p><strong>Autor:</strong> Juan Diego Paredes Gámez</p>
+            <p><strong>Proyecto:</strong> MiUNET – Sistema de Información Universitario Inteligente</p>
+            
+            <h3>Descripción del Proyecto</h3>
+            <p>
+                <strong>MiUNET</strong> es una aplicación móvil que centraliza la información clave de la vida universitaria UNETense: 
+                horarios administrativos, departamentos académicos, trámites, preparadurías y guías para egresados. 
+                La app ofrece un repositorio organizado de horarios y enlaces directos a páginas y herramientas oficiales, 
+                complementado con un chatbot interactivo que responde preguntas frecuentes, por ejemplo:
+            </p>
+            <ul>
+                <li>“¿Cuándo es el último día para retirar materias?”</li>
+                <li>“¿Está abierto Control de Estudios?”</li>
+                <li>“¿Dónde entro a la plataforma de notas?”</li>
+            </ul>
+
+            <h3>Tecnologías Utilizadas</h3>
+            <ul>
+                <li><strong>Backend:</strong> Node.js + Express</li>
+                <li><strong>Base de Datos:</strong> MongoDB</li>
+                <li><strong>Frontend:</strong> React Native</li>
+                <li><strong>Chatbot:</strong> Dialogflow o Rasa</li>
+            </ul>
+
+            <h3>Funcionalidades Clave</h3>
+            <ul>
+                <li>Registro de usuarios con dominio <code>@unet.edu.ve</code> (roles: Estudiante, Preparador, Administrador, Egresado).</li>
+                <li>Dashboard con repositorio de horarios de servicios y departamentos.</li>
+                <li>Enlaces a plataformas y herramientas institucionales (plataforma de notas, correo, biblioteca digital, etc.).</li>
+                <li>Contador de fechas importantes (retiros, inscripciones, exámenes).</li>
+                <li>Información de trámites y costos.</li>
+                <li>Preparadurías disponibles.</li>
+                <li>Chatbot MiUNET para consultas rápidas.</li>
+            </ul>
+
+            <h3>Objetivo Final</h3>
+            <p>
+                Desarrollar un Sistema de Información Universitario Inteligente que unifique en un solo espacio repositorios, 
+                enlaces y datos críticos para estudiantes y egresados, reduciendo la dispersión de la información y 
+                mejorando la gestión académica dentro de la UNET.
+            </p>
+        </section>
+
+        <section id="seguimiento" class="tab-section" style="display:none;">
+            <h2>Seguimiento</h2>
+            <p>Contenido de seguimiento próximamente...</p>
+        </section>
+
+        <section id="glosario" class="tab-section" style="display:none;">
+            <!-- El glosario se genera dinámicamente por script.js -->
+        </section>
+
+        <section id="actividades" class="tab-section" style="display:none;">
+            <h2>Actividades</h2>
+            <p>Contenido de actividades próximamente...</p>
+        </section>
+    </main>
 
     <script src="script.js"></script>
+    <script>
+    // Navegación de pestañas
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.tab-section').forEach(sec => sec.style.display = 'none');
+            document.getElementById(btn.dataset.tab).style.display = 'block';
+        });
+    });
+    // Mostrar la pestaña principal por defecto
+    document.getElementById('principal').style.display = 'block';
+    </script>
 </body>
 </html>
