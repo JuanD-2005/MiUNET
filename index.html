@@ -1,94 +1,812 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glosario MiUNET</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MiUNET - Proyecto UNET</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ===== RESET ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f8f9fa;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #003366;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 2rem;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-logo {
+      font-size: 1.7rem;
+      font-weight: bold;
+      color: #fff;
+      letter-spacing: 2px;
+    }
+
+    nav {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    nav button:hover,
+    nav button.active {
+      background: #e8e8ed;
+      color: #003366;
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    main {
+      margin-top: 80px;
+      padding: 2rem;
+    }
+
+    .tab-section {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: linear-gradient(135deg, #003366 0%, #004d99 100%);
+      color: white;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+      background-size: cover;
+    }
+
+    .hero-logo-text {
+      font-size: 4rem;
+      font-weight: bold;
+      color: #fff;
+      letter-spacing: 3px;
+      margin: 1rem 0;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* ===== CARDS ===== */
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.8rem;
+      margin: 1rem 0;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      border-left: 4px solid #003366;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .card h2, .card h3 {
+      color: #003366;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card ul {
+      padding-left: 1.5rem;
+    }
+
+    .card li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* ===== GRID CARDS ===== */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      padding: 1.5rem 0;
+      margin: 2rem 0;
+    }
+
+    .cards-grid .card {
+      text-align: center;
+      font-weight: 500;
+      padding: 1.5rem;
+      margin: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #003366;
+    }
+
+    /* ===== ROW SECTIONS ===== */
+    .mision-vision-row,
+    .problema-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      padding: 2.5rem 0;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+    }
+
+    .mision-vision-row img,
+    .problema-row img {
+      max-width: 320px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      flex: 1;
+    }
+
+    .mision-vision-row .card,
+    .problema-row .card {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    /* ===== CONTENT SECTIONS ===== */
+    .content-section {
+      margin: 3rem 0;
+    }
+
+    .section-title {
+      text-align: center;
+      color: #003366;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: #003366;
+      border-radius: 2px;
+    }
+
+    /* ===== FEATURES SECTION ===== */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .feature {
+      text-align: center;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      color: #003366;
+      margin-bottom: 1rem;
+    }
+
+    .feature h3 {
+      margin-bottom: 1rem;
+      color: #003366;
+    }
+
+    /* ===== GLOSARIO SECTION ===== */
+    .glosario-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .termino-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      border-top: 4px solid #004d99;
+    }
+
+    .termino-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .termino-card h3 {
+      color: #003366;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 2px solid #e8e8ed;
+      padding-bottom: 0.5rem;
+    }
+
+    .termino-icon {
+      font-size: 1.8rem;
+      color: #004d99;
+    }
+
+    /* ===== TECHNOLOGIES SECTION ===== */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .tech-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .tech-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .tech-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #003366;
+    }
+
+    /* ===== FOOTER ===== */
+   footer {
+  background: #003366;
+  color: #fff;
+  padding: 2rem 1rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin-top: 3rem;
+  border-radius: 12px;
+}
+
+.footer-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.footer-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.footer-links a {
+  color: #e8e8ed;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
+
+.footer-social {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-social a {
+  color: #e8e8ed;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+  color: #fff;
+}
+
+.footer-bottom {
+  margin-top: 3rem;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.logo-unet-header {
+  height: 40px;
+  width: auto;
+}
+
+.logo-linea-header {
+  height: 32px;
+  width: auto;
+}
+
+.logo-unet-footer {
+  height: 38px;
+  width: auto;
+  margin-right: 0.5rem;
+}
+
+.footer-content > div {
+  align-items: flex-start;
+}
+
+.footer-content p {
+  margin: 0.2rem 0;
+  text-align: left;
+}
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        padding: 1rem;
+      }
+      
+      .nav-logo {
+        margin-bottom: 0.5rem;
+      }
+      
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .mision-vision-row,
+      .problema-row {
+        flex-direction: column;
+      }
+      
+      .mision-vision-row img,
+      .problema-row img {
+        order: -1;
+        max-width: 100%;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero-logo-text {
+        font-size: 3rem;
+      }
+      
+      .glosario-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .tech-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
 </head>
 <body>
-    <header class="nav-header">
-        <div class="nav-logo">UNET</div>
-        <nav class="nav-tabs">
-            <button class="nav-btn" data-tab="principal">Principal</button>
-            <button class="nav-btn" data-tab="seguimiento">Seguimiento</button>
-            <button class="nav-btn" data-tab="glosario">Glosario</button>
-            <button class="nav-btn" data-tab="actividades">Actividades</button>
-        </nav>
-    </header>
+  <header>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <span class="nav-logo">MiUNET</span>
+      <img src="sources/UNET1.png" alt="Logo UNET" class="logo-unet-header">
+      <img src="sources/Linea.png" alt="Separador" class="logo-linea-header">
+    </div>
+    <nav>
+      <button data-tab="principal" class="active">Principal</button>
+      <button data-tab="seguimiento">Seguimiento</button>
+      <button data-tab="glosario">Glosario</button>
+      <button data-tab="actividades">Actividades</button>
+    </nav>
+  </header>
 
-    <main>
-        <section id="principal" class="tab-section">
-            <h2>Bienvenidos al Blog de MiUNET</h2>
-            <p><strong>Autor:</strong> Juan Diego Paredes Gámez</p>
-            <p><strong>Proyecto:</strong> MiUNET – Sistema de Información Universitario Inteligente</p>
-            
-            <h3>Descripción del Proyecto</h3>
-            <p>
-                <strong>MiUNET</strong> es una aplicación móvil que centraliza la información clave de la vida universitaria UNETense: 
-                horarios administrativos, departamentos académicos, trámites, preparadurías y guías para egresados. 
-                La app ofrece un repositorio organizado de horarios y enlaces directos a páginas y herramientas oficiales, 
-                complementado con un chatbot interactivo que responde preguntas frecuentes, por ejemplo:
-            </p>
+  <main>
+    <!-- PESTAÑA PRINCIPAL -->
+    <section id="principal" class="tab-section" style="display: block;">
+      <div class="hero">
+        <div class="hero-logo-text">MiUNET</div>
+        <div class="hero-content">
+          <h1>Plataforma Integral Universitaria</h1>
+          <p>Una solución tecnológica innovadora para la comunidad UNET</p>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2 class="section-title">Nuestro Proyecto</h2>
+        <div class="card">
+          <h2><i class="fas fa-bullseye"></i> Objetivo General</h2>
+          <p>
+            Desarrollar una aplicación móvil dinámica para la UNET que integre un chatbot académico inteligente 
+            y funcionalidades de gestión de información institucional, mejorando la experiencia de toda la comunidad universitaria.
+          </p>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2 class="section-title">Objetivos Específicos</h2>
+        <div class="cards-grid">
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-user-shield"></i></div>
+            <h3>Autenticación con roles</h3>
+            <p>Sistema seguro con permisos diferenciados para estudiantes, profesores y administrativos</p>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-robot"></i></div>
+            <h3>Chatbot académico</h3>
+            <p>Asistente virtual en tiempo real para resolver dudas académicas e institucionales</p>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-database"></i></div>
+            <h3>Repositorio dinámico</h3>
+            <p>Centralización de información académica actualizada y de fácil acceso</p>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-mobile-alt"></i></div>
+            <h3>Experiencia intuitiva</h3>
+            <p>Interfaz amigable y accesible diseñada para dispositivos móviles</p>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
+            <h3>Seguridad y escalabilidad</h3>
+            <p>Infraestructura robusta en Firebase garantizando protección y crecimiento</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2 class="section-title">Misión y Visión</h2>
+        <div class="mision-vision-row">
+          <div class="card">
+            <h3><i class="fas fa-rocket"></i> Misión</h3>
+            <p>Ofrecer a la comunidad universitaria una herramienta tecnológica innovadora que facilite el acceso a información académica y administrativa, promoviendo la eficiencia y conectividad en todos los procesos universitarios.</p>
+          </div>
+          <img src="sources/MiUNET-2.png" alt="Imagen MiUNET">
+          <div class="card">
+            <h3><i class="fas fa-star"></i> Visión</h3>
+            <p>Convertirse en la aplicación institucional de referencia de la UNET, pionera en integrar inteligencia artificial y gestión académica, siendo reconocida por su contribución a la transformación digital de la universidad.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2 class="section-title">Planteamiento del Problema</h2>
+        <div class="problema-row">
+          <img src="sources/MiUNET-1.png" alt="Problema MiUNET">
+          <div class="card">
+            <h3><i class="fas fa-search"></i> Necesidad Identificada</h3>
             <ul>
-                <li>“¿Cuándo es el último día para retirar materias?”</li>
-                <li>“¿Está abierto Control de Estudios?”</li>
-                <li>“¿Dónde entro a la plataforma de notas?”</li>
+              <li><strong>Falta de un medio unificado:</strong> No existe una plataforma centralizada para trámites y consultas</li>
+              <li><strong>Comunicación fragmentada:</strong> La información se dispersa en múltiples canales no oficiales</li>
+              <li><strong>Información desactualizada:</strong> Dificultad para acceder a datos confiables y actualizados</li>
+              <li><strong>Procesos ineﬁcientes:</strong> Tiempos prolongados en resolución de trámites y consultas</li>
             </ul>
+          </div>
+        </div>
+      </div>
 
-            <h3>Tecnologías Utilizadas</h3>
+      <div class="content-section">
+        <h2 class="section-title">Características Principales</h2>
+        <div class="features">
+          <div class="feature">
+            <div class="feature-icon"><i class="fas fa-comments"></i></div>
+            <h3>Chatbot Inteligente</h3>
+            <p>Asistente virtual capacitado para responder preguntas frecuentes sobre trámites, horarios, calificaciones y más.</p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon"><i class="fas fa-calendar-alt"></i></div>
+            <h3>Gestión Académica</h3>
+            <p>Acceso centralizado a horarios de clase, calendario de evaluaciones y eventos universitarios.</p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon"><i class="fas fa-bell"></i></div>
+            <h3>Notificaciones</h3>
+            <p>Sistema de alertas personalizadas para recordatorios importantes y novedades institucionales.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PESTAÑA SEGUIMIENTO -->
+    <section id="seguimiento" class="tab-section">
+      <div class="content-section">
+        <h2 class="section-title">Seguimiento del Proyecto</h2>
+        <div class="card">
+          <h2><i class="fas fa-tasks"></i> Estado Actual</h2>
+          <p>El proyecto MiUNET se encuentra en fase de desarrollo, con un 40% de avance en la implementación de sus funcionalidades principales.</p>
+        </div>
+        
+        <div class="cards-grid">
+          <div class="card">
+            <h3><i class="fas fa-check-circle"></i> Completado</h3>
             <ul>
-                <li><strong>Backend:</strong> Node.js + Express</li>
-                <li><strong>Base de Datos:</strong> MongoDB</li>
-                <li><strong>Frontend:</strong> React Native</li>
-                <li><strong>Chatbot:</strong> Dialogflow o Rasa</li>
+              <li>Análisis de requerimientos</li>
+              <li>Diseño de interfaz de usuario</li>
+              <li>Configuración de Firebase</li>
+              <li>Prototipo de chatbot</li>
             </ul>
-
-            <h3>Funcionalidades Clave</h3>
+          </div>
+          <div class="card">
+            <h3><i class="fas fa-spinner"></i> En Progreso</h3>
             <ul>
-                <li>Registro de usuarios con dominio <code>@unet.edu.ve</code> (roles: Estudiante, Preparador, Administrador, Egresado).</li>
-                <li>Dashboard con repositorio de horarios de servicios y departamentos.</li>
-                <li>Enlaces a plataformas y herramientas institucionales (plataforma de notas, correo, biblioteca digital, etc.).</li>
-                <li>Contador de fechas importantes (retiros, inscripciones, exámenes).</li>
-                <li>Información de trámites y costos.</li>
-                <li>Preparadurías disponibles.</li>
-                <li>Chatbot MiUNET para consultas rápidas.</li>
+              <li>Desarrollo de módulo de autenticación</li>
+              <li>Implementación de API de información académica</li>
+              <li>Integración de servicios de notificación</li>
             </ul>
+          </div>
+          <div class="card">
+            <h3><i class="fas fa-hourglass-start"></i> Próximas Etapas</h3>
+            <ul>
+              <li>Pruebas de usabilidad</li>
+              <li>Despliegue en ambiente de producción</li>
+              <li>Campo de difusión a la comunidad UNET</li>
+            </ul>
+          </div>
+        </div>
 
-            <h3>Objetivo Final</h3>
-            <p>
-                Desarrollar un Sistema de Información Universitario Inteligente que unifique en un solo espacio repositorios, 
-                enlaces y datos críticos para estudiantes y egresados, reduciendo la dispersión de la información y 
-                mejorando la gestión académica dentro de la UNET.
-            </p>
-        </section>
+        <!-- Nueva sección para tecnologías utilizadas -->
+        <div class="content-section">
+          <h2 class="section-title">Tecnologías Utilizadas</h2>
+          <div class="tech-grid">
+            <div class="tech-item">
+              <div class="tech-icon"><i class="fab fa-android"></i></div>
+              <h3>Kotlin</h3>
+              <p>Lenguaje principal para desarrollo Android nativo</p>
+            </div>
+            <div class="tech-item">
+              <div class="tech-icon"><i class="fas fa-database"></i></div>
+              <h3>Firebase</h3>
+              <p>Backend como servicio para autenticación y base de datos</p>
+            </div>
+            <div class="tech-item">
+              <div class="tech-icon"><i class="fas fa-code"></i></div>
+              <h3>Android Studio</h3>
+              <p>Entorno de desarrollo oficial para aplicaciones Android</p>
+            </div>
+            <div class="tech-item">
+              <div class="tech-icon"><i class="fas fa-mobile"></i></div>
+              <h3>Flutter</h3>
+              <p>Framework para desarrollo multiplataforma</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <section id="seguimiento" class="tab-section" style="display:none;">
-            <h2>Seguimiento</h2>
-            <p>Contenido de seguimiento próximamente...</p>
-        </section>
+    <!-- PESTAÑA GLOSARIO -->
+    <section id="glosario" class="tab-section">
+      <div class="content-section">
+        <h2 class="section-title">Glosario de Términos</h2>
+        
+        <div class="glosario-grid">
+          <div class="termino-card">
+            <h3><i class="fas fa-database termino-icon"></i> Dato</h3>
+            <p>Un dato es un hecho bruto o un valor elemental que, por sí solo, no tiene significado completo. Los datos pueden ser números, palabras, fechas o símbolos que representan información potencial. Por ejemplo, "25", "Juan" o "01/09/2025" son datos.</p>
+          </div>
+          
+          <div class="termino-card">
+            <h3><i class="fas fa-info-circle termino-icon"></i> Información</h3>
+            <p>La información es el conjunto de datos que han sido procesados, organizados o interpretados para generar significado y utilidad. La información permite tomar decisiones y comprender fenómenos. Por ejemplo, "Juan tiene 25 años" combina datos para generar información relevante.</p>
+          </div>
+          
+          <div class="termino-card">
+            <h3><i class="fas fa-cogs termino-icon"></i> Sistema</h3>
+            <p>Un sistema es un conjunto de elementos interrelacionados que trabajan juntos para alcanzar un objetivo común. Los sistemas tienen entradas (inputs), procesos y salidas (outputs), y pueden incluir personas, máquinas y procedimientos.</p>
+          </div>
+          
+          <div class="termino-card">
+            <h3><i class="fas fa-microchip termino-icon"></i> Procesamiento de Datos</h3>
+            <p>El procesamiento de datos es la transformación de datos en información mediante operaciones como recopilación, clasificación, almacenamiento, cálculo y análisis. Por ejemplo, sumar ventas diarias para obtener un total mensual.</p>
+          </div>
+          
+          <div class="termino-card">
+            <h3><i class="fas fa-server termino-icon"></i> Sistemas de Información (SI)</h3>
+            <p>Un sistema de información es un conjunto organizado de componentes (personas, hardware, software, datos y procedimientos) que recolecta, procesa, almacena y distribuye información para apoyar la toma de decisiones, coordinación, análisis y control en una organización.</p>
+          </div>
+          
+          <div class="termino-card">
+            <h3><i class="fas fa-robot termino-icon"></i> Chatbot</h3>
+            <p>Sistema de inteligencia artificial que simula conversación humana para resolver consultas de usuarios.</p>
+          </div>
+          
+          <div class="termino-card">
+            <h3><i class="fas fa-database termino-icon"></i> Firebase</h3>
+            <p>Plataforma de desarrollo de aplicaciones móviles y web que ofrece diversos servicios en la nube.</p>
+          </div>
+          
+          <div class="termino-card">
+            <h3><i class="fas fa-mobile-alt termino-icon"></i> Aplicación nativa</h3>
+            <p>Aplicación desarrollada específicamente para un sistema operativo móvil (iOS o Android).</p>
+          </div>
+          
+          <div class="termino-card">
+            <h3><i class="fas fa-users termino-icon"></i> Roles de usuario</h3>
+            <p>Sistema de permisos que define las acciones disponibles para diferentes tipos de usuarios.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <section id="glosario" class="tab-section" style="display:none;">
-            <!-- El glosario se genera dinámicamente por script.js -->
-        </section>
+    <!-- PESTAÑA ACTIVIDADES -->
+    <section id="actividades" class="tab-section">
+      <div class="content-section">
+        <h2 class="section-title">Actividades del Proyecto</h2>
+        <div class="card">
+          <h2><i class="fas fa-list-alt"></i> Cronograma de Actividades</h2>
+          <p>A continuación se detallan las actividades planificadas para el desarrollo del proyecto MiUNET:</p>
+        </div>
+        
+        <div class="cards-grid">
+          <div class="card">
+            <h3><i class="fas fa-calendar-check"></i> Fase 1: Planificación</h3>
+            <ul>
+              <li>Definición de alcance</li>
+              <li>Estudio de factibilidad</li>
+              <li>Elaboración de cronograma</li>
+              <li>Asignación de recursos</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3><i class="fas fa-code"></i> Fase 2: Desarrollo</h3>
+            <ul>
+              <li>Diseño de interfaz</li>
+              <li>Programación de módulos</li>
+              <li>Integración de servicios</li>
+              <li>Implementación de seguridad</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3><i class="fas fa-vial"></i> Fase 3: Pruebas</h3>
+            <ul>
+              <li>Pruebas unitarias</li>
+              <li>Pruebas de integración</li>
+              <li>Pruebas de usabilidad</li>
+              <li>Pruebas de rendimiento</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3><i class="fas fa-rocket"></i> Fase 4: Implementación</h3>
+            <ul>
+              <li>Despliegue en producción</li>
+              <li>Capacitación de usuarios</li>
+              <li>Monitoreo post-implementación</li>
+              <li>Soporte y mantenimiento</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-        <section id="actividades" class="tab-section" style="display:none;">
-            <h2>Actividades</h2>
-            <p>Contenido de actividades próximamente...</p>
-        </section>
-    </main>
+  <footer>
+    <div class="footer-content">
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <img src="sources/UNET0.png" alt="Logo UNET0" class="logo-unet-footer">
+        <div>
+          <p>Universidad Nacional Experimental del Táchira</p>
+          <p>Proyecto desarrollado por: Juan Paredes</p>
+          <p>Ingeniería Informática - Sistemas de Información I</p>
+          <p>© 2023 MiUNET - Todos los derechos reservados</p>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-    <script src="script.js"></script>
-    <script>
-    // Navegación de pestañas
-    document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.tab-section').forEach(sec => sec.style.display = 'none');
-            document.getElementById(btn.dataset.tab).style.display = 'block';
-        });
+  <script>
+    // Navegación entre secciones
+    const buttons = document.querySelectorAll('nav button');
+    const sections = document.querySelectorAll('.tab-section');
+
+    function activateTab(tabId) {
+      // Ocultar todas las secciones
+      sections.forEach(sec => sec.style.display = 'none');
+      
+      // Mostrar la sección seleccionada
+      document.getElementById(tabId).style.display = 'block';
+      
+      // Actualizar botones activos
+      buttons.forEach(btn => {
+        if (btn.dataset.tab === tabId) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        activateTab(btn.dataset.tab);
+      });
     });
-    // Mostrar la pestaña principal por defecto
-    document.getElementById('principal').style.display = 'block';
-    </script>
+
+    // Mostrar principal al inicio
+    activateTab('principal');
+  </script>
 </body>
 </html>
