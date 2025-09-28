@@ -555,13 +555,73 @@
         .phase-header::after { display: none; }
         .phase-tasks { grid-template-columns: 1fr; }
     }
+
+/* ==== Estilos para las técnicas ==== */
+.technique-content p strong {
+  display: inline-block;
+  background: #e2e8f0;
+  color: #1e293b;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+
+/* Tarjetas de técnicas */
+.technique-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.2rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease;
+}
+.technique-card:hover {
+  transform: translateY(-3px);
+}
+
+/* Iconos de técnica */
+.technique-icon {
+  font-size: 2rem;
+  color: #2563eb;
+  margin-bottom: 0.5rem;
+}
+
+/* ==== Diagrama Responsivo ==== */
+.usecase-diagram-wrapper {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* ==== Conclusión ==== */
+.conclusion-card {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  color: #166534;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.conclusion-card i {
+  font-size: 1.6rem;
+  color: #16a34a;
+}
+
+
 </style>
 
 <div class="content-section">
     <h2 class="section-title">Actividades del Proyecto</h2>
     <div class="card">
         <h2><i class="fas fa-list-alt"></i> Cronograma de Actividades</h2>
-        <p>A continuación se detallan las actividades planificadas para el desarrollo del proyecto MiUNET:</p>
+        <p style="font-size: 20px;">A continuación se detallan las actividades planificadas para el desarrollo del proyecto MiUNET:</p>
     </div>
 
     <!-- Calendario nuevo -->
@@ -569,7 +629,7 @@
         <!-- Fase 1 -->
         <div class="calendar-phase phase-1">
             <div class="phase-header">
-                <div class="phase-icon"><i class="fas fa-calendar-check"></i></div>
+                
                 <div class="phase-title">Fase 1</div>
                 <div class="phase-duration">Semana 1</div>
             </div>
@@ -591,7 +651,6 @@
         <!-- Fase 2 -->
         <div class="calendar-phase phase-2">
             <div class="phase-header">
-                <div class="phase-icon"><i class="fas fa-code"></i></div>
                 <div class="phase-title">Fase 2</div>
                 <div class="phase-duration">Semanas 2-4</div>
             </div>
@@ -613,7 +672,6 @@
         <!-- Fase 3 -->
         <div class="calendar-phase phase-3">
             <div class="phase-header">
-                <div class="phase-icon"><i class="fas fa-vial"></i></div>
                 <div class="phase-title">Fase 3</div>
                 <div class="phase-duration">Semanas 5</div>
             </div>
@@ -635,7 +693,6 @@
         <!-- Fase 4 -->
         <div class="calendar-phase phase-4">
             <div class="phase-header">
-                <div class="phase-icon"><i class="fas fa-rocket"></i></div>
                 <div class="phase-title">Fase 4</div>
                 <div class="phase-duration">Semana POSTERIOR</div>
             </div>
@@ -660,16 +717,21 @@
     <!-- Nueva sección: Técnicas y Metodologías -->
     <div class="content-section">
         <h2 class="section-title">Técnicas y Metodologías Aplicadas</h2>
-        <p class="intro-text">
-            En la fase de análisis y diseño de un sistema de información es necesario utilizar técnicas que permitan
+        <p style="font-size: 20px;" class="intro-text">
+            &nbsp;&nbsp;&nbsp;&nbsp;En la fase de análisis y diseño de un sistema de información es necesario utilizar técnicas que permitan
             identificar de manera precisa los requerimientos y comprender las necesidades del usuario. Estas técnicas 
             forman parte del ciclo de vida del desarrollo de sistemas, y su correcta aplicación incrementa la eficiencia,
             evita retrabajos costosos y asegura que el producto final responda realmente a los problemas planteados.
             Según los capítulos 5 y 6 del libro <em>Análisis y Diseño de Sistemas</em>, estas herramientas permiten pasar
             de la observación del problema a la definición clara de soluciones viables.
         </p>
-        <p class="intro-text">
-            Para el proyecto <strong>MiUNET</strong> seleccioné dos técnicas principales: <em>Prototipado de identificación</em>
+
+ <div style="text-align: center; margin: 1.5rem 0;">
+    <img src="Sources/tecnicas.png" alt="Ilustración de Técnicas de Análisis" style="width: 25%; height: auto; border-radius: 8px;">
+  </div>
+
+        <p style="font-size: 20px;" class="intro-text">
+            &nbsp;&nbsp;&nbsp;&nbsp;Para el proyecto <strong>MiUNET</strong> seleccioné dos técnicas principales: <em>Prototipado de identificación</em>
             e <em>Investigación de sistemas similares</em>. La primera me ayuda a transformar ideas en representaciones 
             tangibles de la interfaz, mientras que la segunda me permite contrastar mi propuesta con soluciones ya existentes
             en contextos similares. Ambas técnicas se complementan y sirven como insumo para el modelado en casos de uso,
@@ -677,33 +739,36 @@
         </p>
 
         <div class="techniques-grid">
-            <!-- Técnica 1 -->
-            <div class="technique-card">
-                <div class="technique-icon">
-                    <i class="fas fa-pencil-ruler"></i>
-                </div>
-                <h3>Prototipado de identificación</h3>
-                <div class="technique-content">
-                    <p>
-                        <strong>Definición:</strong> Elaboración de representaciones tempranas (wireframes, bocetos, maquetas digitales)
-                        que simulan la estructura y funciones de la aplicación antes de construirla realmente.
-                    </p>
-                    <p>
-                        <strong>Importancia:</strong> Permite identificar problemas de diseño con anticipación, realizar iteraciones rápidas
-                        y de bajo costo, y validar si la propuesta resulta intuitiva para los usuarios antes de invertir en el desarrollo.
-                    </p>
-                    <p>
-                        <strong>Ventajas:</strong> Favorece la comunicación con los usuarios, fomenta la creatividad y reduce el riesgo de errores.
-                        <br><strong>Limitaciones:</strong> No refleja la funcionalidad completa del sistema, lo que puede generar expectativas
-                        irreales si no se explica correctamente.
-                    </p>
-                    <p>
-                        <strong>Aplicación en MiUNET:</strong> Creación de un prototipo inicial de la pantalla principal con barra de navegación
-                        inferior y accesos a Horarios, Materias, Eventos, Precios y Chatbot. Este prototipo servirá para validar la disposición
-                        de los elementos y la claridad de la navegación.
-                    </p>
-                </div>
-            </div>
+       <!-- Técnica 1 -->
+<div class="technique-card">
+  <div class="technique-icon">
+    <i class="fas fa-pencil-ruler"></i>
+  </div>
+  <h3>Prototipado de identificación</h3>
+  <div class="technique-content">
+    <p>
+      <strong>Definición:</strong> Elaboración de representaciones tempranas 
+      (wireframes, bocetos, maquetas digitales) que simulan la estructura y funciones
+      de la aplicación antes de construirla realmente.
+    </p>
+    <p>
+      <strong>Importancia:</strong> Permite identificar problemas de diseño con anticipación,
+      realizar iteraciones rápidas y de bajo costo, y validar si la propuesta resulta intuitiva
+      para los usuarios antes de invertir en el desarrollo.
+    </p>
+    <p>
+      <strong>Ventajas:</strong> Favorece la comunicación con los usuarios, fomenta la creatividad 
+      y reduce el riesgo de errores.  
+      <br><strong>Limitaciones:</strong> No refleja la funcionalidad completa del sistema, 
+      lo que puede generar expectativas irreales si no se explica correctamente.
+    </p>
+    <p>
+      <strong>Aplicación en MiUNET:</strong> Creación de un prototipo inicial de la pantalla principal 
+      con barra de navegación inferior y accesos a Horarios, Materias, Eventos, Precios y Chatbot. 
+      Este prototipo servirá para validar la disposición de los elementos y la claridad de la navegación.
+    </p>
+  </div>
+</div>
 
             <!-- Técnica 2 -->
             <div class="technique-card">
@@ -737,8 +802,8 @@
     <!-- Sección Casos de Uso -->
     <div class="content-section">
         <h2 class="section-title">Modelado con Casos de Uso</h2>
-        <p class="intro-text">
-            Con la información obtenida mediante las dos técnicas seleccionadas, el siguiente paso es modelar los requerimientos
+        <p class="intro-text" style="font-size: 20px;">
+            &nbsp;&nbsp;&nbsp;&nbsp;Con la información obtenida mediante las dos técnicas seleccionadas, el siguiente paso es modelar los requerimientos
             utilizando <strong>casos de uso</strong>. Esta técnica del capítulo 6 permite describir las interacciones entre los actores
             (usuarios o roles) y el sistema, garantizando que las funcionalidades respondan a necesidades reales.
         </p>
@@ -942,12 +1007,12 @@
     <div class="content-section">
         <h2 class="section-title">Conclusión</h2>
         <div class="conclusion-card">
-            <p>
-                El uso combinado de <em>Prototipado de identificación</em> e <em>Investigación de sistemas similares</em> 
+            <p style="font-size: 20px;">
+                &nbsp;&nbsp;&nbsp;&nbsp;El uso combinado de <em>Prototipado de identificación</em> e <em>Investigación de sistemas similares</em> 
                 fortalece la fase de análisis y diseño del proyecto MiUNET. Estas técnicas no solo facilitan la detección
                 de necesidades y problemas reales, sino que también permiten tomar decisiones informadas y comparar con referentes.
                 <br><br>
-                Al integrarlas con el modelado en casos de uso, se logra una representación clara de cómo los diferentes actores
+                &nbsp;&nbsp;&nbsp;&nbsp;Al integrarlas con el modelado en casos de uso, se logra una representación clara de cómo los diferentes actores
                 interactúan con el sistema, lo cual incrementa la probabilidad de éxito del proyecto y asegura que la solución
                 tecnológica esté alineada con los objetivos de la comunidad universitaria.
             </p>
