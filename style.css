@@ -75,51 +75,81 @@ main {
 
 /* ===== HERO SECTION ===== */
 .hero {
-  text-align: center;
-  padding: 2rem 1rem;
-  background: linear-gradient(135deg, #003366 0%, #004d99 100%);
-  color: white;
-  border-radius: 12px;
-  margin-bottom: 2rem;
   position: relative;
+  height: 80vh;
+  width: 95vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
   overflow: hidden;
 }
 
-.hero::before {
-  content: '';
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-bg {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
-  background-size: cover;
-}
-
-.hero-logo-text {
-  font-size: 4rem;
-  font-weight: bold;
-  color: #fff;
-  letter-spacing: 3px;
-  margin: 1rem 0;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  object-fit: cover;
+  filter: blur(6px) brightness(70%); /* 👈 difumina y oscurece */
+  z-index: 0;
 }
 
 .hero-content {
   position: relative;
-  z-index: 1;
+  z-index: 1; /* el texto se ve encima */
 }
 
-.hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+.hero-logo-text {
+  font-size: 4.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 2;
 }
 
-.hero p {
-  font-size: 1.2rem;
-  max-width: 800px;
-  margin: 0 auto;
+/* Colores diferenciados */
+.hero-logo-text .mi {
+  color: #00c3ff; /* azul tecnológico */
 }
+
+.hero-logo-text .unet {
+  color: #00c3ff; /* dorado académico */
+}
+
+/* Efecto gradiente brillante */
+.hero-logo-text span {
+  background: linear-gradient(45deg, #00c3ff, #00c3ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Animación leve al cargar */
+.hero-logo-text {
+  animation: fadeInDown 1.2s ease-in-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 /* ===== CARDS ===== */
 .card {
@@ -418,7 +448,189 @@ footer {
   text-align: left;
 }
 
-/* ===== RESPONSIVE ===== */
+/* ===== ACTIVIDADES: LÍNEA DE TIEMPO, TÉCNICAS Y CASOS DE USO ===== */
+
+/* Estilos para la línea de tiempo */
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 2rem auto;
+}
+
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  background-color: #003366;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -3px;
+  border-radius: 10px;
+}
+
+.timeline-phase {
+  padding: 10px 40px;
+  position: relative;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+.timeline-phase:nth-child(odd) {
+  left: 0;
+}
+
+.timeline-phase:nth-child(even) {
+  left: 50%;
+}
+
+.phase-icon {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  right: -25px;
+  background-color: #003366;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.timeline-phase:nth-child(even) .phase-icon {
+  left: -25px;
+}
+
+.phase-content {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.phase-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.phase-content h3 {
+  margin-top: 0;
+  color: #003366;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.phase-content ul {
+  padding-left: 1.5rem;
+}
+
+.phase-content li {
+  margin-bottom: 0.5rem;
+}
+
+/* Colores para cada fase */
+.phase-1 { background-color: #4CAF50; }
+.phase-2 { background-color: #2196F3; }
+.phase-3 { background-color: #FF9800; }
+.phase-4 { background-color: #9C27B0; }
+
+/* Estilos para las técnicas */
+.techniques-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.technique-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border-top: 4px solid #004d99;
+  text-align: center;
+}
+
+.technique-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.technique-icon {
+  font-size: 3rem;
+  color: #003366;
+  margin-bottom: 1rem;
+}
+
+.technique-card h3 {
+  color: #003366;
+  margin-bottom: 1rem;
+}
+
+.technique-content p {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+/* Estilos para los casos de uso */
+.use-cases {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.use-case-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border-left: 4px solid #004d99;
+}
+
+.use-case-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.use-case-card h3 {
+  color: #003366;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.use-case-card ul {
+  padding-left: 1.5rem;
+}
+
+.use-case-card li {
+  margin-bottom: 0.5rem;
+}
+
+/* Estilo para la conclusión */
+.conclusion-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid #004d99;
+}
+
+.intro-text {
+  margin-bottom: 2rem;
+  text-align: justify;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   header {
     flex-direction: column;
@@ -460,4 +672,39 @@ footer {
   .tech-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .timeline::after {
+    left: 31px;
+  }
+
+  .timeline-phase {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+
+  .timeline-phase:nth-child(even) {
+    left: 0;
+  }
+
+  .phase-icon {
+    left: 15px !important;
+    right: auto;
+  }
 }
+
+.usecase-diagram-wrapper {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin: 1.5rem 0;
+    border: 1px solid #e2e8f0;
+  }
+  
+  .content-section h3 {
+    color: #003366;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.5rem;
+  }
