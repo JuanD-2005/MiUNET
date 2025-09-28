@@ -28,6 +28,13 @@ header {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+.logo-linea-header {
+  width: 1000px;   /* ajusta a lo que quieras */
+  height: auto;   /* mantiene la proporción */
+  display: block;
+}
+
+
 .nav-logo {
   font-size: 1.7rem;
   font-weight: bold;
@@ -370,13 +377,30 @@ footer {
 }
 
 .footer-content {
-  max-width: 1000px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  align-items: flex-start;
-  text-align: left;
+  justify-content: space-between; /* separa izquierda y derecha */
+  align-items: center;
+  padding: 1rem 2rem; /* espacio interno */
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-left p {
+  margin: 0.2rem 0;
+}
+
+.footer-right {
+  text-align: right;
+}
+
+.footer-right p {
+  margin: 0.2rem 0;
 }
 
 .footer-logo {
@@ -434,10 +458,17 @@ footer {
 }
 
 .logo-unet-footer {
-  height: 38px;
+  height: 120px;
   width: auto;
   margin-right: 0.5rem;
 }
+
+.footer-right img {
+  height: 95px; /* ajusta el tamaño del logo */
+  width: auto;
+  margin-bottom: 0.5rem; /* espacio entre el logo y el texto */
+}
+
 
 .footer-content > div {
   align-items: flex-start;
