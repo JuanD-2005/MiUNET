@@ -31,10 +31,10 @@ Desarrollar una aplicación dinámica que integre un **chatbot académico inteli
 
 ## 📅 Cronograma de Actividades
 
-- **Fase 1: Planificación (Semanas 1-4)** – Definición de alcance, estudio de factibilidad, elaboración del cronograma y asignación de recursos.  
-- **Fase 2: Desarrollo (Semanas 5-12)** – Diseño de interfaz, programación de módulos, integración de servicios y seguridad.  
-- **Fase 3: Pruebas (Semanas 13-16)** – Pruebas unitarias, de integración, usabilidad y rendimiento.  
-- **Fase 4: Implementación (Semanas 17-20)** – Despliegue, capacitación, monitoreo y soporte.
+- **Fase 1: Planificación (Semanas 1)** – Definición de alcance, estudio de factibilidad, elaboración del cronograma y asignación de recursos.  
+- **Fase 2: Desarrollo (Semanas 2-4)** – Diseño de interfaz, programación de módulos, integración de servicios y seguridad.  
+- **Fase 3: Pruebas (Semanas 5)** – Pruebas unitarias, de integración, usabilidad y rendimiento.  
+- **Fase 4: Implementación (Posterior)** – Despliegue, capacitación, monitoreo y soporte.
 
 ---
 
