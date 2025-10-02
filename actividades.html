@@ -1,361 +1,89 @@
 <style>
-        :root {
-            --primary: #3498db;
-            --secondary: #2ecc71;
-            --accent: #e74c3c;
-            --light: #f8f9fa;
-            --dark: #343a40;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #f5f7fa;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        .content-section {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 2.5rem;
-            color: var(--dark);
-            font-size: 2.2rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            border-radius: 2px;
-        }
-        
-        /* Cards mejoradas */
-        .card {
-            background: white;
-            border-radius: 12px;
-            padding: 1.8rem;
-            margin-bottom: 2rem;
-            box-shadow: var(--shadow);
-            border-left: 5px solid var(--primary);
-            transition: var(--transition);
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        }
-        
-        .card h2 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-        
-        .card h2 i {
-            font-size: 1.8rem;
-        }
-        
-        /* Calendario mejorado */
-    .calendar-timeline {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        margin: 3rem 0;
-    }
 
-    .calendar-phase {
-        display: flex;
-        background: white;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: var(--shadow);
-        transition: var(--transition);
-    }
+/* Contenedor para imágenes de técnicas */
+.technique-image-container {
+    background: white;
+    border-radius: 8px;
+    padding: 0.8rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin: 1rem 0;
+    border: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-    .calendar-phase:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    }
+.technique-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    display: block;
+}
 
-    .phase-header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 1.5rem;
-        min-width: 180px;
-        color: white;
-        position: relative;
-    }
+.image-caption {
+    margin-top: 0.5rem;
+    color: #666;
+    font-size: 0.85rem;
+    text-align: center;
+    font-style: italic;
+}
 
-    .phase-header::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        right: -15px;
-        transform: translateY(-50%);
-        width: 0;
-        height: 0;
-        border-top: 15px solid transparent;
-        border-bottom: 15px solid transparent;
-        z-index: 1;
-    }
 
-    .phase-1 .phase-header { background: linear-gradient(135deg, #3498db, #2980b9); }
-    .phase-1 .phase-header::after { border-left: 15px solid #2980b9; }
+/* Contenedor simple para diagrama */
+.diagram-container {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    margin: 2rem 0;
+    border-left: 4px solid var(--primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: var(--transition);
+}
 
-    .phase-2 .phase-header { background: linear-gradient(135deg, #2ecc71, #27ae60); }
-    .phase-2 .phase-header::after { border-left: 15px solid #27ae60; }
+.diagram-container:hover {
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
 
-    .phase-3 .phase-header { background: linear-gradient(135deg, #e67e22, #d35400); }
-    .phase-3 .phase-header::after { border-left: 15px solid #d35400; }
+.diagram-title {
+    color: var(--dark);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #f0f0f0;
+}
 
-    .phase-4 .phase-header { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
-    .phase-4 .phase-header::after { border-left: 15px solid #8e44ad; }
+.diagram-wrapper {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
 
-    .phase-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
-    .phase-title { font-size: 1.3rem; font-weight: 600; text-align: center; }
-    .phase-duration { font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.9; }
+.diagram-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}
 
-    .phase-content { padding: 1.5rem; flex: 1; }
-    .phase-content h3 {
-        margin-bottom: 1rem;
-        color: var(--dark);
-        font-size: 1.4rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
+.diagram-caption {
+    margin-top: 1rem;
+    color: #666;
+    font-size: 0.9rem;
+    text-align: center;
+    font-style: italic;
+}
 
-    .phase-tasks {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 1rem;
-    }
-
-    .task-item {
-        background: #f8f9fa;
-        border-radius: 8px;
-        padding: 1rem;
-        display: flex;
-        align-items: center;
-        gap: 0.8rem;
-        transition: var(--transition);
-    }
-
-    .task-item:hover { background: #e9ecef; transform: translateX(5px); }
-
-    .task-icon {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 1.2rem;
-        flex-shrink: 0;
-    }
-
-    .phase-1 .task-icon { background: #3498db; }
-    .phase-2 .task-icon { background: #2ecc71; }
-    .phase-3 .task-icon { background: #e67e22; }
-    .phase-4 .task-icon { background: #9b59b6; }
-
-    .progress-section { margin-top: 2rem; }
-    .progress-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
-    .progress-bar { height: 10px; background: #e9ecef; border-radius: 5px; overflow: hidden; }
-    .progress-fill { height: 100%; border-radius: 5px; transition: width 1s ease-in-out; }
-    .phase-1 .progress-fill { background: #3498db; width: 25%; }
-    .phase-2 .progress-fill { background: #2ecc71; width: 50%; }
-    .phase-3 .progress-fill { background: #e67e22; width: 75%; }
-    .phase-4 .progress-fill { background: #9b59b6; width: 100%; }
-
-    @media (max-width: 768px) {
-        .calendar-phase { flex-direction: column; }
-        .phase-header::after { display: none; }
-        .phase-tasks { grid-template-columns: 1fr; }
-    }
-        
-        /* Técnicas mejoradas */
-        .intro-text {
-            margin-bottom: 2rem;
-            text-align: justify;
-            line-height: 1.8;
-            font-size: 1.1rem;
-        }
-        
-        .techniques-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .technique-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-        
-        .technique-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-        
-        .technique-icon {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: white;
-            padding: 1.5rem;
-            text-align: center;
-            font-size: 2.5rem;
-        }
-        
-        .technique-card h3 {
-            padding: 1.5rem 1.5rem 0.5rem;
-            color: var(--dark);
-            font-size: 1.5rem;
-        }
-        
-        .technique-content {
-            padding: 0 1.5rem 1.5rem;
-            flex-grow: 1;
-        }
-        
-        .technique-content p {
-            margin-bottom: 1rem;
-        }
-        
-        /* Casos de uso mejorados */
-        .use-cases {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .use-case-card {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            text-align: center;
-            transition: var(--transition);
-            border-top: 5px solid var(--primary);
-        }
-        
-        .use-case-card:hover {
-            transform: scale(1.05);
-        }
-        
-        .use-case-card h3 {
-            color: var(--dark);
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.8rem;
-        }
-        
-        .use-case-card ul {
-            list-style-type: none;
-            padding-left: 0;
-            text-align: left;
-        }
-        
-        .use-case-card li {
-            padding: 0.7rem 0;
-            position: relative;
-            padding-left: 1.5rem;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .use-case-card li:last-child {
-            border-bottom: none;
-        }
-        
-        .use-case-card li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-            font-size: 1.5rem;
-        }
-        
-        /* Diagrama mejorado */
-        .usecase-diagram-wrapper {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
-            margin-top: 2rem;
-        }
-        
-        /* Conclusión mejorada */
-        .conclusion-card {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            border-radius: 12px;
-            padding: 2.5rem;
-            box-shadow: var(--shadow);
-            border-left: 5px solid var(--secondary);
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .techniques-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .timeline::before {
-                left: 20px;
-            }
-            
-            .phase-icon {
-                width: 40px;
-                height: 40px;
-                margin-right: 1.5rem;
-            }
-            
-            .phase-icon i {
-                font-size: 1.2rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-        }
-    </style>
-
-<style>
     :root {
         --primary: #3498db;
         --secondary: #2ecc71;
@@ -365,26 +93,26 @@
         --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         --transition: all 0.3s ease;
     }
-
+    
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-
+    
     body {
         background-color: #f5f7fa;
         color: #333;
         line-height: 1.6;
     }
-
+    
     .content-section {
         max-width: 1200px;
         margin: 2rem auto;
         padding: 0 1.5rem;
     }
-
+    
     .section-title {
         text-align: center;
         margin-bottom: 2.5rem;
@@ -393,7 +121,7 @@
         position: relative;
         padding-bottom: 0.5rem;
     }
-
+    
     .section-title::after {
         content: '';
         position: absolute;
@@ -405,8 +133,8 @@
         background: linear-gradient(to right, var(--primary), var(--secondary));
         border-radius: 2px;
     }
-
-    /* Cards */
+    
+    /* Cards mejoradas */
     .card {
         background: white;
         border-radius: 12px;
@@ -416,12 +144,12 @@
         border-left: 5px solid var(--primary);
         transition: var(--transition);
     }
-
+    
     .card:hover {
         transform: translateY(-5px);
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     }
-
+    
     .card h2 {
         color: var(--primary);
         margin-bottom: 1rem;
@@ -429,11 +157,11 @@
         align-items: center;
         gap: 0.8rem;
     }
-
+    
     .card h2 i {
         font-size: 1.8rem;
     }
-
+    
     /* Calendario mejorado */
     .calendar-timeline {
         display: flex;
@@ -550,71 +278,177 @@
     .phase-3 .progress-fill { background: #e67e22; width: 20%; }
     .phase-4 .progress-fill { background: #9b59b6; width: 10%; }
 
-    @media (max-width: 768px) {
-        .calendar-phase { flex-direction: column; }
-        .phase-header::after { display: none; }
-        .phase-tasks { grid-template-columns: 1fr; }
+    /* Técnicas mejoradas */
+    .intro-text {
+        margin-bottom: 2rem;
+        text-align: justify;
+        line-height: 1.8;
+        font-size: 1.1rem;
     }
-
-/* ==== Estilos para las técnicas ==== */
-.technique-content p strong {
-  display: inline-block;
-  background: #e2e8f0;
-  color: #1e293b;
-  padding: 0.2rem 0.5rem;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  margin-bottom: 0.3rem;
-}
-
-/* Tarjetas de técnicas */
-.technique-card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 1.2rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  transition: transform 0.2s ease;
-}
-.technique-card:hover {
-  transform: translateY(-3px);
-}
-
-/* Iconos de técnica */
-.technique-icon {
-  font-size: 2rem;
-  color: #2563eb;
-  margin-bottom: 0.5rem;
-}
-
-/* ==== Diagrama Responsivo ==== */
-.usecase-diagram-wrapper {
-  overflow-x: auto;
-  margin: 1.5rem 0;
-  padding: 1rem;
-  border-radius: 12px;
-  background: #ffffff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-
-/* ==== Conclusión ==== */
-.conclusion-card {
-  background: #f0fdf4;
-  border: 1px solid #bbf7d0;
-  border-radius: 12px;
-  padding: 1.5rem;
-  color: #166534;
-  font-size: 1.05rem;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.8rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-}
-.conclusion-card i {
-  font-size: 1.6rem;
-  color: #16a34a;
-}
-
-
+    
+    .techniques-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+    
+    .technique-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    
+    .technique-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .technique-icon {
+        background: linear-gradient(to right, var(--primary), var(--secondary));
+        color: white;
+        padding: 1.5rem;
+        text-align: center;
+        font-size: 2.5rem;
+    }
+    
+    .technique-card h3 {
+        padding: 1.5rem 1.5rem 0.5rem;
+        color: var(--dark);
+        font-size: 1.5rem;
+    }
+    
+    .technique-content {
+        padding: 0 1.5rem 1.5rem;
+        flex-grow: 1;
+    }
+    
+    .technique-content p {
+        margin-bottom: 1rem;
+    }
+    
+    .technique-content p strong {
+        display: inline-block;
+        background: #e2e8f0;
+        color: #1e293b;
+        padding: 0.2rem 0.5rem;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    /* Casos de uso mejorados */
+    .use-cases {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+    
+    .use-case-card {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: var(--shadow);
+        text-align: center;
+        transition: var(--transition);
+        border-top: 5px solid var(--primary);
+    }
+    
+    .use-case-card:hover {
+        transform: scale(1.05);
+    }
+    
+    .use-case-card h3 {
+        color: var(--dark);
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem;
+    }
+    
+    .use-case-card ul {
+        list-style-type: none;
+        padding-left: 0;
+        text-align: left;
+    }
+    
+    .use-case-card li {
+        padding: 0.7rem 0;
+        position: relative;
+        padding-left: 1.5rem;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .use-case-card li:last-child {
+        border-bottom: none;
+    }
+    
+    .use-case-card li::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        color: var(--primary);
+        font-size: 1.5rem;
+    }
+    
+    /* Diagrama mejorado */
+    .usecase-diagram-wrapper {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+        margin-top: 2rem;
+        overflow-x: auto;
+    }
+    
+    /* Conclusión mejorada */
+    .conclusion-card {
+        background: #f0fdf4;
+        border: 1px solid #bbf7d0;
+        border-radius: 12px;
+        padding: 1.5rem;
+        color: #166534;
+        font-size: 1.05rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.8rem;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    
+    .conclusion-card i {
+        font-size: 1.6rem;
+        color: #16a34a;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .techniques-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .calendar-phase { 
+            flex-direction: column; 
+        }
+        
+        .phase-header::after { 
+            display: none; 
+        }
+        
+        .phase-tasks { 
+            grid-template-columns: 1fr; 
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+        }
+    }
 </style>
 
 <div class="content-section">
@@ -739,12 +573,19 @@
         </p>
 
         <div class="techniques-grid">
-       <!-- Técnica 1 -->
+<!-- Técnica 1 -->
 <div class="technique-card">
   <div class="technique-icon">
     <i class="fas fa-pencil-ruler"></i>
   </div>
   <h3>Prototipado de identificación</h3>
+  
+  <!-- Contenedor para imagen de la técnica 1 -->
+  <div class="technique-image-container">
+    <img src="Sources/MiUNET-Logo.png" alt="Ejemplo de prototipado" class="technique-image">
+    <div class="image-caption">Ejemplo de prototipado de interfaz</div>
+  </div>
+  
   <div class="technique-content">
     <p>
       <strong>Definición:</strong> Elaboración de representaciones tempranas 
@@ -770,34 +611,40 @@
   </div>
 </div>
 
-            <!-- Técnica 2 -->
-            <div class="technique-card">
-                <div class="technique-icon">
-                    <i class="fas fa-search"></i>
-                </div>
-                <h3>Investigación de sistemas similares</h3>
-                <div class="technique-content">
-                    <p>
-                        <strong>Definición:</strong> Estudio de aplicaciones existentes, tanto en universidades nacionales como extranjeras,
-                        con el fin de identificar buenas prácticas, funciones útiles y áreas de mejora.
-                    </p>
-                    <p>
-                        <strong>Importancia:</strong> Permite aprender de experiencias previas, evitar errores comunes y diseñar un sistema competitivo
-                        adaptado al contexto real de la UNET.
-                    </p>
-                    <p>
-                        <strong>Ventajas:</strong> Ahorra tiempo en el diseño, aporta referencias validadas y genera un marco comparativo sólido.
-                        <br><strong>Limitaciones:</strong> Puede llevar a copiar funcionalidades sin una adaptación adecuada, lo que requiere un análisis crítico.
-                    </p>
-                    <p>
-                        <strong>Aplicación en MiUNET:</strong> Revisión de aplicaciones universitarias que ya integran calendarios, recordatorios y trámites digitales.
-                        A partir de ello, incorporar a MiUNET funciones adaptadas, como recordatorios automáticos de exámenes y un calendario académico accesible
-                        desde la pantalla principal.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- Técnica 2 -->
+<div class="technique-card">
+  <div class="technique-icon">
+    <i class="fas fa-search"></i>
+  </div>
+  <h3>Investigación de sistemas similares</h3>
+  
+  <!-- Contenedor para imagen de la técnica 2 -->
+  <div class="technique-image-container">
+    <img src="Sources/MiUPCLogo.png" alt="Investigación de sistemas similares" class="technique-image">
+    <div class="image-caption">Comparativa de aplicaciones universitarias</div>
+  </div>
+  
+  <div class="technique-content">
+    <p>
+      <strong>Definición:</strong> Estudio de aplicaciones existentes, tanto en universidades nacionales como extranjeras,
+      con el fin de identificar buenas prácticas, funciones útiles y áreas de mejora.
+    </p>
+    <p>
+      <strong>Importancia:</strong> Permite aprender de experiencias previas, evitar errores comunes y diseñar un sistema competitivo
+      adaptado al contexto real de la UNET.
+    </p>
+    <p>
+      <strong>Ventajas:</strong> Ahorra tiempo en el diseño, aporta referencias validadas y genera un marco comparativo sólido.
+      <br><strong>Limitaciones:</strong> Puede llevar a copiar funcionalidades sin una adaptación adecuada, lo que requiere un análisis crítico.
+    </p>
+    <p>
+      <strong>Aplicación en MiUNET:</strong> Revisión de aplicaciones universitarias que ya integran calendarios, recordatorios y trámites digitales.
+      A partir de ello, incorporar a MiUNET funciones adaptadas, como recordatorios automáticos de exámenes y un calendario académico accesible
+      desde la pantalla principal.
+    </p>
+  </div>
+</div>
+</div>
 
     <!-- Sección Casos de Uso -->
     <div class="content-section">
@@ -837,171 +684,19 @@
             </div>
         </div>
 
-        <!-- Diagrama de Casos de Uso (SVG) -->
-        <div class="content-section">
-            <h3 class="section-title" style="font-size: 1.8rem;">Diagrama esquemático de Casos de Uso</h3>
-            <div class="usecase-diagram-wrapper">
-                <svg viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: auto;">
-                    <style>
-                        .uc-bg { fill: #f8fafc; }
-                        .actor { fill: #ffffff; stroke:#cbd5e1; stroke-width:2; }
-                        .actor-label { fill:#1e293b; font-family: Arial, sans-serif; font-size:14px; font-weight:600; }
-                        .case { fill:#f1f5f9; stroke:#cbd5e1; stroke-width:2; rx:12; ry:12; }
-                        .case-label { fill:#0f172a; font-family: Arial, sans-serif; font-size:12px; font-weight:500; }
-                        .line { stroke:#94a3b8; stroke-width:2; stroke-dasharray:0; }
-                        .arrow { fill: #94a3b8; }
-                        .shadow { filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
-                        
-                        /* Colores para cada actor */
-                        .student-color { fill: #dbeafe; stroke: #3b82f6; }
-                        .teacher-color { fill: #fef3c7; stroke: #f59e0b; }
-                        .admin-color { fill: #fce7f3; stroke: #ec4899; }
-                        
-                        .student-case { fill: #dbeafe; stroke: #3b82f6; }
-                        .teacher-case { fill: #fef3c7; stroke: #f59e0b; }
-                        .admin-case { fill: #fce7f3; stroke: #ec4899; }
-                    </style>
-
-                    <!-- Fondo -->
-                    <rect x="0" y="0" width="1000" height="600" class="uc-bg"/>
-
-                    <!-- Título -->
-                    <text x="500" y="30" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold" fill="#1e293b">
-                        Diagrama de Casos de Uso - MiUNET
-                    </text>
-
-                    <!-- Actores (izquierda) -->
-                    <!-- Estudiante -->
-                    <g transform="translate(50,80)" class="shadow">
-                        <rect x="0" y="0" width="140" height="100" rx="10" class="actor student-color" />
-                        <circle cx="70" cy="30" r="15" fill="#3b82f6" />
-                        <text x="70" y="70" class="actor-label" text-anchor="middle">Estudiante</text>
-                    </g>
-
-                    <!-- Profesor -->
-                    <g transform="translate(50,220)" class="shadow">
-                        <rect x="0" y="0" width="140" height="100" rx="10" class="actor teacher-color" />
-                        <circle cx="70" cy="30" r="15" fill="#f59e0b" />
-                        <text x="70" y="70" class="actor-label" text-anchor="middle">Profesor</text>
-                    </g>
-
-                    <!-- Administrador -->
-                    <g transform="translate(50,360)" class="shadow">
-                        <rect x="0" y="0" width="140" height="100" rx="10" class="actor admin-color" />
-                        <circle cx="70" cy="30" r="15" fill="#ec4899" />
-                        <text x="70" y="70" class="actor-label" text-anchor="middle">Administrador</text>
-                    </g>
-
-                    <!-- Casos de Uso (centro) -->
-                    
-                    <!-- Casos del Estudiante -->
-                    <g transform="translate(250,60)" class="shadow">
-                        <rect class="case student-case" x="0" y="0" width="200" height="60" rx="10" ry="10"/>
-                        <text class="case-label" x="100" y="35" text-anchor="middle">Consultar horarios</text>
-                    </g>
-
-                    <g transform="translate(250,140)" class="shadow">
-                        <rect class="case student-case" x="0" y="0" width="200" height="60" rx="10" ry="10"/>
-                        <text class="case-label" x="100" y="35" text-anchor="middle">Acceder a eventos</text>
-                    </g>
-
-                    <g transform="translate(250,220)" class="shadow">
-                        <rect class="case student-case" x="0" y="0" width="200" height="60" rx="10" ry="10"/>
-                        <text class="case-label" x="100" y="35" text-anchor="middle">Usar chatbot</text>
-                    </g>
-
-                    <g transform="translate(250,300)" class="shadow">
-                        <rect class="case student-case" x="0" y="0" width="200" height="60" rx="10" ry="10"/>
-                        <text class="case-label" x="100" y="35" text-anchor="middle">Ver calificaciones</text>
-                    </g>
-
-                    <!-- Casos del Profesor -->
-                    <g transform="translate(500,60)" class="shadow">
-                        <rect class="case teacher-case" x="0" y="0" width="220" height="60" rx="10" ry="10"/>
-                        <text class="case-label" x="110" y="35" text-anchor="middle">Actualizar información materias</text>
-                    </g>
-
-                    <g transform="translate(500,140)" class="shadow">
-                        <rect class="case teacher-case" x="0" y="0" width="220" height="60" rx="10" ry="10"/>
-                        <text class="case-label" x="110" y="35" text-anchor="middle">Registrar calificaciones</text>
-                    </g>
-
-                    <g transform="translate(500,220)" class="shadow">
-                        <rect class="case teacher-case" x="0" y="0" width="220" height="60" rx="10" ry="10"/>
-                        <text class="case-label" x="110" y="35" text-anchor="middle">Gestionar horarios atención</text>
-                    </g>
-
-                    <!-- Casos del Administrador -->
-                    <g transform="translate(750,60)" class="shadow">
-                        <rect class="case admin-case" x="0" y="0" width="200" height="60" rx="10" ry="10"/>
-                        <text class="case-label" x="100" y="35" text-anchor="middle">Publicar eventos</text>
-                    </g>
-
-                    <g transform="translate(750,140)" class="shadow">
-                        <rect class="case admin-case" x="0" y="0" width="200" height="60" rx="10" ry="10"/>
-                        <text class="case-label" x="100" y="35" text-anchor="middle">Actualizar precios trámites</text>
-                    </g>
-
-                    <g transform="translate(750,220)" class="shadow">
-                        <rect class="case admin-case" x="0" y="0" width="200" height="60" rx="10" ry="10"/>
-                        <text class="case-label" x="100" y="35" text-anchor="middle">Gestionar usuarios</text>
-                    </g>
-
-                    <!-- Líneas de conexión -->
-                    
-                    <!-- Conexiones Estudiante -->
-                    <line x1="190" y1="110" x2="250" y2="90" class="line"/>
-                    <line x1="190" y1="130" x2="250" y2="170" class="line"/>
-                    <line x1="190" y1="150" x2="250" y2="250" class="line"/>
-                    <line x1="190" y1="170" x2="250" y2="330" class="line"/>
-                    
-                    <!-- Conexiones Profesor -->
-                    <line x1="190" y1="250" x2="500" y2="90" class="line"/>
-                    <line x1="190" y1="270" x2="500" y2="170" class="line"/>
-                    <line x1="190" y1="290" x2="500" y2="250" class="line"/>
-                    
-                    <!-- Conexiones Administrador -->
-                    <line x1="190" y1="390" x2="750" y2="90" class="line"/>
-                    <line x1="190" y1="410" x2="750" y2="170" class="line"/>
-                    <line x1="190" y1="430" x2="750" y2="250" class="line"/>
-
-                    <!-- Flechas -->
-                    <polygon points="250,90 242,85 242,95" class="arrow"/>
-                    <polygon points="250,170 242,165 242,175" class="arrow"/>
-                    <polygon points="250,250 242,245 242,255" class="arrow"/>
-                    <polygon points="250,330 242,325 242,335" class="arrow"/>
-                    
-                    <polygon points="500,90 492,85 492,95" class="arrow"/>
-                    <polygon points="500,170 492,165 492,175" class="arrow"/>
-                    <polygon points="500,250 492,245 492,255" class="arrow"/>
-                    
-                    <polygon points="750,90 742,85 742,95" class="arrow"/>
-                    <polygon points="750,170 742,165 742,175" class="arrow"/>
-                    <polygon points="750,250 742,245 742,255" class="arrow"/>
-
-                    <!-- Leyenda -->
-                    <g transform="translate(50,500)">
-                        <rect x="0" y="0" width="900" height="80" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" rx="8"/>
-                        <text x="20" y="25" font-family="Arial" font-size="14" fill="#475569">
-                            <tspan font-weight="bold">Leyenda:</tspan>
-                        </text>
-                        <g transform="translate(20,45)">
-                            <rect x="0" y="0" width="20" height="20" fill="#dbeafe" stroke="#3b82f6" stroke-width="1" rx="4"/>
-                            <text x="30" y="15" font-family="Arial" font-size="12" fill="#475569">Casos de uso del Estudiante</text>
-                        </g>
-                        <g transform="translate(220,45)">
-                            <rect x="0" y="0" width="20" height="20" fill="#fef3c7" stroke="#f59e0b" stroke-width="1" rx="4"/>
-                            <text x="30" y="15" font-family="Arial" font-size="12" fill="#475569">Casos de uso del Profesor</text>
-                        </g>
-                        <g transform="translate(440,45)">
-                            <rect x="0" y="0" width="20" height="20" fill="#fce7f3" stroke="#ec4899" stroke-width="1" rx="4"/>
-                            <text x="30" y="15" font-family="Arial" font-size="12" fill="#475569">Casos de uso del Administrador</text>
-                        </g>
-                    </g>
-                </svg>
-            </div>
-        </div>
+        <div class="diagram-container">
+    <div class="diagram-title">Diagrama de Casos de Uso</div>
+    <div class="diagram-wrapper">
+        <img src="Sources/DiagramaCasosDeUso.png" alt="Diagrama de Casos de Uso" class="diagram-image">
     </div>
+    <div class="diagram-caption">
+        Diagrama que representa los casos de uso del sistema.
+    </div>
+</div>
+
+</div>
+
+ </div>
 
     <!-- Conclusión -->
     <div class="content-section">
