@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_horarios">
+
+    <fragment
+        android:id="@+id/navigation_horarios"
+        android:name="com.example.miunet01.ui.horarios.HorariosFragment"
+        android:label="Horarios"
+        tools:layout="@layout/fragment_horarios" />
+
+    <fragment
+        android:id="@+id/navigation_departamentos"
+        android:name="com.example.miunet01.ui.departamentos.DepartamentosFragment"
+        android:label="Materias"
+        tools:layout="@layout/fragment_departamentos" />
+
+    <fragment
+        android:id="@+id/navigation_eventos"
+        android:name="com.example.miunet01.ui.eventos.EventosFragment"
+        android:label="Eventos"
+        tools:layout="@layout/fragment_eventos" />
+
+    <fragment
+        android:id="@+id/navigation_precios"
+        android:name="com.example.miunet01.ui.precios.PreciosFragment"
+        android:label="Precios"
+        tools:layout="@layout/fragment_precios" />
+
+    <fragment
+        android:id="@+id/navigation_chatbot"
+        android:name="com.example.miunet01.ui.chatbot.ChatbotFragment"
+        android:label="Chatbot"
+        tools:layout="@layout/fragment_chatbot" />
+</navigation>
