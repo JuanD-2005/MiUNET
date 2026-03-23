@@ -1,0 +1,59 @@
+/* ═══════════════════════════════════════
+   TOKENS — colores, fuentes, utilidades
+═══════════════════════════════════════ */
+:root {
+  --navy:       #071828;
+  --navy-2:     #0d2540;
+  --navy-3:     #133060;
+  --blue:       #1a6cff;
+  --blue-light: #4d90ff;
+  --cyan:       #00c4ff;
+  --white:      #ffffff;
+  --off-white:  #f4f8ff;
+  --surface:    #ffffff;
+  --border:     #dde6f5;
+  --muted:      #64748b;
+  --text:       #0d1f3c;
+
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'Outfit', sans-serif;
+
+  --radius-sm:  8px;
+  --radius-md:  14px;
+  --radius-lg:  20px;
+  --shadow-sm:  0 2px 8px rgba(10,40,90,0.08);
+  --shadow-md:  0 6px 24px rgba(10,40,90,0.12);
+  --shadow-lg:  0 16px 48px rgba(10,40,90,0.18);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Reset ── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html  { scroll-behavior: smooth; }
+img   { max-width: 100%; display: block; }
+
+body {
+  font-family: var(--font-body);
+  background:  var(--off-white);
+  color:       var(--text);
+  line-height: 1.65;
+  font-size:   16px;
+}
+
+/* ── Helpers ── */
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-4 { margin-bottom: 1rem;   }
+.mb-6 { margin-bottom: 1.5rem; }
+.mt-4 { margin-top:    1rem;   }
+.mt-6 { margin-top:    1.5rem; }
+.divider { height:1px; background:var(--border); margin:3rem 0; }
+
+.chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(26,108,255,0.08);
+  border: 1px solid rgba(26,108,255,0.15);
+  color: var(--blue);
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 0.78rem; font-weight: 600;
+}

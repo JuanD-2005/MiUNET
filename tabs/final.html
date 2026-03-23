@@ -1,0 +1,103 @@
+<!-- ═══════════════════════════════════════
+     TAB: DOCUMENTACIÓN FINAL
+═══════════════════════════════════════ -->
+<div id="tab-final" class="tab-panel">
+
+  <section class="section">
+    <div class="container">
+
+      <!-- Header del informe -->
+      <div class="doc-header">
+        <h2>Informe Final del Proyecto</h2>
+        <p>Sistema de Información Universitaria</p>
+        <div class="doc-version-badge">MiUNET v0.1 · UNET 2025</div>
+      </div>
+
+      <!-- Contextualización -->
+      <div class="card" style="margin-bottom:2rem">
+        <div class="card-icon-wrap"><i class="fas fa-info-circle"></i></div>
+        <h3>Contextualización del Proyecto</h3>
+        <p>El desarrollo del sistema <strong>MiUNET 0.1</strong> nace como respuesta a la necesidad de centralizar la información institucional y académica de la UNET. Se aplicaron las fases del <em>Análisis y Diseño de Sistemas</em> para definir, modelar y construir una aplicación móvil que integre los principales servicios, departamentos y un chatbot inteligente con Firebase como backend.</p>
+        <a href="https://docs.google.com/document/d/1uqhQ9TAw70pE53wxVY2lDzMyX6EjluxUiTW72G0s8Bk/edit?usp=sharing"
+           target="_blank" class="external-link-card">
+          <div class="link-text">
+            <h4>Ver Documento Completo</h4>
+            <p>Informe Final del Proyecto MiUNET 0.1 — Google Docs</p>
+          </div>
+          <div class="link-arrow"><i class="fas fa-external-link-alt"></i></div>
+        </a>
+      </div>
+
+      <!-- Fase de Análisis -->
+      <div class="section-header">
+        <div class="section-label">Análisis</div>
+        <h2 class="section-title">1. Fase de Análisis de Sistemas</h2>
+      </div>
+
+      <div class="grid-2" style="margin-bottom:3rem">
+        <div class="card">
+          <div class="card-icon-wrap"><i class="fas fa-search"></i></div>
+          <h3>Sistema Actual (AS IS)</h3>
+          <p style="margin-bottom:1rem">Los estudiantes consultan información de forma dispersa: páginas desactualizadas, redes sociales, carteleras físicas y grupos de WhatsApp informales.</p>
+          <ul style="list-style:none;font-size:0.88rem;color:var(--muted)">
+            <li style="padding:5px 0;border-bottom:1px solid var(--border)">→ Falta de plataforma central oficial</li>
+            <li style="padding:5px 0;border-bottom:1px solid var(--border)">→ Información fragmentada y poco confiable</li>
+            <li style="padding:5px 0">→ Técnicas: observación, entrevistas, modelado de procesos</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-icon-wrap"><i class="fas fa-tasks"></i></div>
+          <h3>Requisitos del Sistema (TO BE)</h3>
+          <p style="margin-bottom:1rem">Funcionalidades prioritarias definidas a partir del análisis y encuestas con usuarios reales.</p>
+          <table class="priority-table">
+            <thead><tr><th>Funcionalidad</th><th>Prioridad</th><th>Estado</th></tr></thead>
+            <tbody>
+              <tr><td>Mostrar horarios</td><td>Alta</td><td class="status-done">✓ Implementado</td></tr>
+              <tr><td>Mostrar eventos</td><td>Alta</td><td class="status-done">✓ Implementado</td></tr>
+              <tr><td>Chatbot básico</td><td>Media</td><td class="status-done">✓ Implementado</td></tr>
+              <tr><td>Edición para admins</td><td>Media</td><td class="status-done">✓ Implementado</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Fase de Diseño -->
+      <div class="section-header">
+        <div class="section-label">Diseño</div>
+        <h2 class="section-title">2. Fase de Diseño del Sistema</h2>
+      </div>
+
+      <div class="card" style="margin-bottom:2rem">
+        <div class="card-icon-wrap"><i class="fas fa-cogs"></i></div>
+        <h3>Selección de Tecnologías</h3>
+        <p style="margin-bottom:1.25rem">Se evaluaron dos opciones de almacenamiento. Firebase Firestore fue elegido por su sincronización en tiempo real, soporte multi-usuario y escalabilidad sin costo adicional.</p>
+        <table class="compare-table">
+          <thead><tr><th>Criterio</th><th>SQLite Local</th><th>Firebase Firestore ✓</th></tr></thead>
+          <tbody>
+            <tr><td>Sincronización en tiempo real</td><td>❌</td><td>✅</td></tr>
+            <tr><td>Acceso multiusuario</td><td>❌</td><td>✅</td></tr>
+            <tr><td>Escalabilidad</td><td>Limitada</td><td>Alta</td></tr>
+            <tr><td>Costo base</td><td>$0</td><td>$0 (plan gratuito)</td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:1.25rem;display:flex;gap:8px;flex-wrap:wrap">
+          <span class="chip"><i class="fas fa-check"></i> Firebase Cloud Firestore</span>
+          <span class="chip"><i class="fas fa-check"></i> Kotlin</span>
+          <span class="chip"><i class="fas fa-check"></i> Android Studio</span>
+          <span class="chip"><i class="fas fa-check"></i> Material Design</span>
+        </div>
+      </div>
+
+      <!-- Conclusión -->
+      <div class="card" style="border-left:4px solid #22c55e;background:linear-gradient(135deg,rgba(34,197,94,0.05),rgba(34,197,94,0.02))">
+        <div class="card-icon-wrap" style="background:linear-gradient(135deg,#22c55e,#16a34a)">
+          <i class="fas fa-flag-checkered"></i>
+        </div>
+        <h3>Conclusión</h3>
+        <p>El sistema <strong>MiUNET 0.1</strong> representa una solución tecnológica integral que responde directamente a la necesidad de centralizar la información institucional de la UNET. Su diseño modular, arquitectura en la nube con Firebase y chatbot integrado sientan las bases para una plataforma universitaria escalable, moderna y orientada al usuario.</p>
+      </div>
+
+    </div>
+  </section>
+
+</div>
